@@ -5,7 +5,7 @@ on:
     branches:
       - main  # This runs the action only when changes are pushed to the main branch
     paths:
-      - 'archive.zip' # IMPORTANT: This should be the exact name of your zip file
+      - 'project-bolt-sb1-efaxzl3s.zip' # IMPORTANT: This should be the exact name of your zip file
 
 jobs:
   unzip:
