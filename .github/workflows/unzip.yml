@@ -1,0 +1,27 @@
+name: Unzip Main Archive
+
+on:
+  push:
+    branches:
+      - main  # This runs the action only when changes are pushed to the main branch
+    paths:
+      - 'archive.zip' # IMPORTANT: This should be the exact name of your zip file
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Unzip the archive
+      run: unzip archive.zip # This command unzips the file
+
+    - name: Commit unzipped files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        # The following line will fail if there are no new files, so we add || exit 0
+        git commit -m "Unzip archive.zip and add contents" -a || exit 0
+        git push
